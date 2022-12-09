@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".connection">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/backslow"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="353dp"
+        android:layout_height="150dp"
+        android:fontFamily="@font/nerko_one"
+        android:gravity="center"
+        android:text="Connecte toi !"
+        android:textSize="52dp"
+        android:textColor="#F57E0F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.111" />
+
+    <EditText
+        android:id="@+id/connectionEmail"
+        android:layout_width="305dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_alternates"
+        android:hint="Email@adress"
+        android:inputType="textEmailAddress"
+        android:textColor="#B2504A4A"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.342" />
+
+    <EditText
+        android:id="@+id/connectionPassword"
+        android:layout_width="306dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_alternates"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#B2504A4A"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.415" />
+
+    <Button
+        android:id="@+id/buttonConnect"
+        android:layout_width="260dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#F57E0F"
+        android:fontFamily="@font/montserrat_alternates"
+        android:gravity="center"
+        android:text="On commence ?"
+        android:textAllCaps="false"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.619" />
+
+    <Button
+        android:id="@+id/buttongoinscription"
+        android:layout_width="318dp"
+        android:layout_height="54dp"
+        android:alpha="0.40"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="@font/montserrat_alternates"
+        android:gravity="center"
+        android:text="Pas encore inscrit, c'est par ici"
+        android:textAllCaps="false"
+        android:textColor="#A91D58"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.714" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

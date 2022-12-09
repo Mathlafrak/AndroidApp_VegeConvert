@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "953588858744",
+    "firebase_url": "https://vege-convert-v3-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "vege-convert-v3",
+    "storage_bucket": "vege-convert-v3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953588858744:android:64490f91bdd41dc3f2528d",
+        "android_client_info": {
+          "package_name": "com.example.vegeconvertv3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953588858744-uv5bgvrfbqqqnpt9si11rgoh45ji8nva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNzNhml21Nqmd0zeOB8wZ9uyVuQgXd5fk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953588858744-uv5bgvrfbqqqnpt9si11rgoh45ji8nva.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
