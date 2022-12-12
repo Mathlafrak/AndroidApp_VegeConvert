@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.vegeconvertv3.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private Button buttonConnectInscription;
-    private EditText
+    private EditText familyName, firstName;
     private Button buttonTransparent;
 
     ActivityMainBinding binding;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         this.buttonConnectInscription = findViewById(R.id.buttonConnectInscription);
 
 
-    Getdataentree();
+
     buttonTransparent = findViewById(R.id.buttonTrans);
 
         buttonTransparent.setOnClickListener(new View.OnClickListener() {
@@ -45,23 +46,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    //Appel de la database entree
-    public ArrayList<class_entree> Getdataentree(){
-        ArrayList<class_entree> list = new ArrayList<>();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("entree")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot document: queryDocumentSnapshots){
-                            class_entree recette = document.toObject(class_entree.class);
-                            list.add(recette);
-                        }
-                        Log.d("DATAAA", list.get(0).getNom_recette());
-                    }
-                });
-        return list;
-    }
+
 
 }

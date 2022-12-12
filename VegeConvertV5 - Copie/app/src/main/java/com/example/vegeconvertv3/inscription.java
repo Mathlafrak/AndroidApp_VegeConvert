@@ -64,32 +64,32 @@ public class inscription extends AppCompatActivity {
 
 
                 if (TextUtils.isEmpty(familyNametxt) || TextUtils.isEmpty(firstNametxt) || TextUtils.isEmpty(emailtxt) || TextUtils.isEmpty(passwordtxt)) {
-                    Toast.makeText(Inscription.this, "Remplissez tous les champs", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(inscription.this, "Remplissez tous les champs", Toast.LENGTH_SHORT).show();
                 } else {
-                    AjouterUtilisateur(emailtxt, passwordtxt);
+                    AjouterUtilisateur(emailtxt, passwordtxt,familyNametxt,firstNametxt);
                 }
             }
 
 
         });
     }
-    private void AjouterUtilisateur(String email, String password){
+    private void AjouterUtilisateur(String emailtxt, String passwordtxt,String familyNametxt, String firstNametxt){
 
-        Auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(Inscription.this, new OnCompleteListener<AuthResult>() {
+        Auth.createUserWithEmailAndPassword(emailtxt,passwordtxt).addOnCompleteListener(inscription.this, new OnCompleteListener<AuthResult>() {
         @Override
         public void onComplete(@NonNull Task<AuthResult> task) {
             if(task.isSuccessful()){
-                Toast.makeText(Inscription.this, "On y est !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(inscription.this, "On y est !", Toast.LENGTH_SHORT).show();
                 firebaseFirestore.collection("Utilisateur")
                         .document(FirebaseAuth.getInstance().getUid())
-                        .set(new UserModel(firstName,email));
+                        .set(new UserModel(familyNametxt,firstNametxt,emailtxt));
 
-                Intent intent = new Intent(Inscription.this, Login_Signin.class);
+                Intent intent = new Intent(inscription.this, connection.class);
                 startActivity(intent);
                 finish();
             }
             else{
-                Toast.makeText(Inscription.this, "Erreur...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(inscription.this, "Erreur...", Toast.LENGTH_SHORT).show();
             }
         }
     });

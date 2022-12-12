@@ -1,89 +1,79 @@
 package com.example.vegeconvertv3;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.io.CharArrayWriter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+public class connection extends AppCompatActivity{
 
-public class connection extends AppCompatActivity {
-    private Button buttonGoInscription;
-    private Button buttonConnect;
-    private EditText emailAdress;
+    private FirebaseAuth Auth;
+    private EditText email;
     private EditText password;
-    @SuppressLint("MissingInflatedId")
-    @Override
+    private Button inscription;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
 
-        //Initalisation
-        this.buttonGoInscription = findViewById(R.id.buttongoinscription);
-        emailAdress = findViewById(R.id.connectionEmail);
-        password = findViewById(R.id.connectionPassword);
-        buttonConnect = findViewById(R.id.buttonConnect);
+        Auth = FirebaseAuth.getInstance();
+        final EditText mail = findViewById(R.id.connectionEmail);
+        final EditText password = findViewById(R.id.connectionPassword);
+        final Button login = findViewById(R.id.buttonConnect);
+        final Button Inscription = findViewById(R.id.buttongoinscription);
 
-        //Fleche désactiver
-        buttonConnect.setEnabled(false);
-
-        //Boutton -> Inscription
-        buttonGoInscription.setOnClickListener(new View.OnClickListener() {
+        Inscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent pageInscription = new Intent(getApplicationContext(),inscription.class);
-                startActivity(pageInscription);
+                Intent intent = new Intent(getApplicationContext(), inscription.class);
+                startActivity(intent);
                 finish();
             }
         });
 
-        //Attendre email
-        emailAdress.addTextChangedListener(new TextWatcher() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void onClick(View view) {
+                final String mailtxt = mail.getText().toString();
+                final String passwordtxt = password.getText().toString();
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //Attendre password
-                password.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        // This is where we'll check the user input
-                        //On réactive le boutton
-                        buttonConnect.setEnabled(!s.toString().isEmpty());
-                    }
-                });
+                if (mailtxt.isEmpty() || passwordtxt.isEmpty()) {
+                    Toast.makeText(connection.this, "Please enter your mail or password", Toast.LENGTH_LONG).show();
+                } else {
+                    login(mailtxt, passwordtxt);
+                }
             }
         });
+    }
+        private void login(String mailtxt, String passwordtxt) {
+            Auth.signInWithEmailAndPassword(mailtxt,passwordtxt)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(connection.this, "Logged In", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(connection.this, choix_regime.class);
+                                startActivity(intent);
+                            }
+                            else{
+                                Toast.makeText(connection.this, "Erreur...", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+        }
+    }
 
-        //Passer à la page suivante
-        buttonConnect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pageChoixRegime = new Intent(getApplicationContext(),choix_regime.class);
-                startActivity(pageChoixRegime);
-                finish();
-            }
-        });
 
-}}
